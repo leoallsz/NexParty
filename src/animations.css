@@ -1,0 +1,87 @@
+/* NexParty: motion layer that preserves the existing visual design. */
+:root {
+  --np-motion-fast: 180ms;
+  --np-motion-normal: 420ms;
+  --np-motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes np-fade-up {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 14px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes np-soft-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Entrance motion for page content and major sections. */
+#root > * {
+  animation: np-soft-fade var(--np-motion-normal) var(--np-motion-ease) both;
+}
+main > *,
+section,
+[role="dialog"] {
+  animation: np-fade-up 560ms var(--np-motion-ease) both;
+}
+
+/* Subtle hover feedback for the existing cards and controls. */
+[class*="card"],
+[class*="Card"],
+article {
+  transition:
+    transform var(--np-motion-fast) var(--np-motion-ease),
+    box-shadow var(--np-motion-fast) ease,
+    border-color var(--np-motion-fast) ease;
+}
+
+[class*="card"]:hover,
+[class*="Card"]:hover,
+article:hover {
+  transform: translateY(-3px);
+}
+
+button,
+[role="button"],
+a[class*="button"],
+a[class*="Button"] {
+  transition:
+    transform var(--np-motion-fast) var(--np-motion-ease),
+    filter var(--np-motion-fast) ease,
+    box-shadow var(--np-motion-fast) ease;
+}
+
+button:hover:not(:disabled),
+[role="button"]:hover,
+a[class*="button"]:hover,
+a[class*="Button"]:hover {
+  transform: translateY(-1px);
+}
+
+button:active:not(:disabled),
+[role="button"]:active,
+a[class*="button"]:active,
+a[class*="Button"]:active {
+  transform: translateY(0) scale(0.98);
+}
+
+img {
+  transition: transform 500ms var(--np-motion-ease);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
