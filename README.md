@@ -3,19 +3,28 @@
 Marketplace de fornecedores de festas e eventos de São José do Rio Preto e região (nexparty.com.br).
 
 ## Stack
-- React 18 + React Router (HashRouter) + Framer Motion + Leaflet (mapa), em build do Vite já compilado
-- Dados salvos no navegador (localStorage), sem backend
+- React 18 + React Router (`HashRouter`) + Framer Motion + Leaflet.
+- Aplicação estática já compilada; dados salvos no navegador (`localStorage`), sem backend.
 
-## Telas
-Início, Explorar (mapa), Avaliações, Planos, Como Funciona, Sobre, Login/Cadastro, painel do cliente e do fornecedor, **Criar evento**, **Detalhes do evento** (checklist e orçamento), **Pacotes**, **Checkout (simulado)**, **Confirmação** e páginas legais.
+## Rodar localmente
+O `src/main.js` é um módulo ES. Sirva a pasta raiz com um servidor local:
 
-## Como rodar
-O `src/main.js` é um módulo ES, então precisa de servidor local:
+```sh
+npx serve .
+```
 
-    npx serve .
+## Publicar no Cloudflare Pages
+Este repositório está configurado como site estático, sem etapa de build ou instalação de dependências. O `wrangler.toml` indica a pasta raiz (`.`) como diretório publicado, e `_headers` aplica cabeçalhos básicos de segurança.
 
-Também funciona no GitHub Pages (Settings → Pages → branch main, pasta root).
+1. No painel Cloudflare, abra **Workers & Pages → Create application → Pages → Connect to Git** e conecte `leoallsz/NexParty`.
+2. Escolha a branch `main`.
+3. Configure **Build command** como vazio (sem comando) e **Build output directory** como `.` (raiz do repositório).
+4. Salve e faça o deploy. Novos commits na branch conectada serão publicados automaticamente.
+
+O projeto usa `HashRouter`, então as rotas da aplicação ficam depois de `#` e não precisam de regras de fallback/redirect no servidor.
+
+Para testar localmente com Wrangler, execute `npx wrangler pages dev .` na raiz. Será necessário autenticar na Cloudflare para publicar pelo CLI; para a integração contínua, use a conexão Git do painel.
 
 ## Observações
-- `src/main.js` é o código compilado e formatado: os nomes de variáveis continuam abreviados.
+- `src/main.js` é o código compilado e formatado; os nomes de variáveis continuam abreviados.
 - Rotas `/admin` ainda são placeholders.
