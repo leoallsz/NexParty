@@ -26,7 +26,7 @@ O projeto usa `HashRouter`, então as rotas da aplicação ficam depois de `#` e
 Para testar localmente com Wrangler, execute `npx wrangler pages dev .` na raiz. Será necessário autenticar na Cloudflare para publicar pelo CLI; para a integração contínua, use a conexão Git do painel.
 
 ## Animações
-`src/animations.css` adiciona animações leves de entrada para o conteúdo, feedback ao passar/clicar em cards e botões, e respeita a preferência de acessibilidade `prefers-reduced-motion` do sistema. O arquivo fica separado do CSS original para preservar o código visual existente.
+A camada `src/animations.css` adiciona movimento premium e discreto em todo o site: blocos de conteúdo entram com fade, background flutuante em um brilho suave, hover elevado em cards e botões, além do suporte a `prefers-reduced-motion` para acessibilidade.
 
 ## Observações
 - `src/main.js` é o código compilado e formatado; os nomes de variáveis continuam abreviados.
